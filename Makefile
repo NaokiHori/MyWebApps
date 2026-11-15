@@ -8,6 +8,7 @@ help:
 	@echo "build-image : build docker image"
 	@echo "dev         : launch development server"
 	@echo "polish      : run type check, formatter, and linter"
+	@echo "test        : run test"
 
 build:
 	docker rm -f $(CONTAINER) 2>/dev/null || true
@@ -53,4 +54,12 @@ polish:
     -v "${PWD}/app":/app/app:ro \
     $(IMAGE) \
     npx oxlint --type-aware app/
+
+test:
+	docker run \
+    --rm \
+    --name $(CONTAINER) \
+    -v "${PWD}/app":/app/app:ro \
+    $(IMAGE) \
+    npx vitest app/
 

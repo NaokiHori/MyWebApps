@@ -48,6 +48,7 @@ jobs:
         run: make build-image
       - name: Perform quality checks and build artifacts
         run: |
+          make test
           make polish
           make build \
             ARTIFACT=${{ env.ARTIFACT }}
