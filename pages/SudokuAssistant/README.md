@@ -1,6 +1,4 @@
-# [Sudoku Assistant](https://naokihori.github.io/Trash/SudokuAssistant/index.html)
-
-[![License](https://img.shields.io/github/license/NaokiHori/Trash)](https://opensource.org/license/MIT)
+# [Sudoku Assistant](https://naokihori.github.io/MyWebApps/SudokuAssistant/index.html)
 
 ## Usage
 

@@ -1,5 +1,5 @@
-IMAGE := naokihori/trash:latest
-CONTAINER := trash
+IMAGE := naokihori/my-web-apps:latest
+CONTAINER := my-web-apps
 ARTIFACT ?= dist
 BASE ?= ./
 
