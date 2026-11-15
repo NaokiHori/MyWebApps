@@ -25,7 +25,7 @@ export default defineConfig({
         Roulette: resolve(root, "./Roulette", "index.html"),
         SudokuAssistant: resolve(root, "./SudokuAssistant", "index.html"),
         Truss: resolve(root, "./Truss", "index.html"),
-        NSSolver: resolve(root, "./NSSolver", "index.html"),
+        Fluid: resolve(root, "./Fluid", "index.html"),
       },
     },
   },

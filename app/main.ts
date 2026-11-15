@@ -11,7 +11,7 @@ import hifuIcon from "./HIFU/icon.jpg";
 import trussIcon from "./Truss/icon.jpg";
 import cartPoleIcon from "./CartPole/icon.jpg";
 import logoIcon from "./Logo/icon.jpg";
-import nsSolverIcon from "./NSSolver/icon.jpg";
+import fluidIcon from "./Fluid/icon.jpg";
 
 class Page {
   private element: HTMLDivElement;
@@ -155,9 +155,9 @@ const ALL_PAGES: Array<Page> = [
   }),
   new Page({
     isActive: false,
-    title: "NSSolver",
-    href: `${ROOT}/NSSolver/index.html`,
-    imageSource: nsSolverIcon,
+    title: "Fluid",
+    href: `${ROOT}/Fluid/index.html`,
+    imageSource: fluidIcon,
   }),
 ];
 

@@ -1,9 +1,8 @@
-import { Program } from "../../webgl/program";
+import { Program } from "../../../../webgl/program";
 import { Framebuffer } from "../../webgl/framebuffer";
 import { FloatingPointTexture } from "../../webgl/floatingPointTexture";
 import { PingPongBuffers } from "../../pingPongBuffers";
-import { VertexBufferObject } from "../../webgl/vertexBufferObject";
-import { defineAndSetUniform } from "../../webgl/uniform";
+import { VertexBufferObject } from "../../../../webgl/vertexBufferObject";
 import { setVertexPosition } from "../domain";
 import vertexShaderSource from "../domain.vs.glsl?raw";
 import fragmentShaderSource from "./solvePoissonEquation.fs.glsl?raw";
@@ -35,25 +34,19 @@ export class SolvePoissonEquation {
       program,
     });
     // initialize and send uniform values
-    defineAndSetUniform({
-      gl,
-      program,
+    program.setUniform({
       dataType: "FLOAT32",
-      name: "u_resolution",
+      uniformName: "u_resolution",
       data: [width, height],
     });
-    defineAndSetUniform({
-      gl,
-      program,
+    program.setUniform({
       dataType: "FLOAT32",
-      name: "u_grid_size",
+      uniformName: "u_grid_size",
       data: [lx / width, ly / height],
     });
-    defineAndSetUniform({
-      gl,
-      program,
+    program.setUniform({
       dataType: "INT32",
-      name: "rhs",
+      uniformName: "rhs",
       data: [0],
     });
     this.program = program;
@@ -80,31 +73,23 @@ export class SolvePoissonEquation {
       texture: FloatingPointTexture;
       framebuffer: Framebuffer;
     } = pressures.getCurrentField();
-    program.use({
-      gl,
-      callback: () => {
-        framebuffer.bindAndExecute({
-          gl,
-          callback: () => {
-            gl.disable(gl.BLEND);
-            gl.viewport(0, 0, width / 4, height);
-            gl.activeTexture(gl.TEXTURE0);
-            rhs.bindAndExecute({
-              gl,
-              callback: () => {
-                vertexBufferObject.bindAndExecute({
-                  gl,
-                  callback: (boundBuffer: VertexBufferObject) => {
-                    boundBuffer.draw({ gl, mode: gl.TRIANGLES });
-                  },
-                });
-              },
-            });
-            gl.enable(gl.BLEND);
-            gl.activeTexture(gl.TEXTURE0);
-          },
-        });
-      },
+    program.use(() => {
+      framebuffer.bindAndExecute({
+        gl,
+        callback: () => {
+          gl.disable(gl.BLEND);
+          gl.viewport(0, 0, width / 4, height);
+          gl.activeTexture(gl.TEXTURE0);
+          rhs.bindAndExecute({
+            gl,
+            callback: () => {
+              vertexBufferObject.bindAndDraw(gl.TRIANGLES);
+            },
+          });
+          gl.enable(gl.BLEND);
+          gl.activeTexture(gl.TEXTURE0);
+        },
+      });
     });
     pressures.flip();
   }
