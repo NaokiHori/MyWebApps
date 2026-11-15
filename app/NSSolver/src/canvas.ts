@@ -1,16 +1,14 @@
+import { getElementByIdOrThrow } from "../../common/dom";
+
 export class Canvas {
-  private _element: HTMLCanvasElement;
+  private element: HTMLCanvasElement;
 
   public constructor({ id }: { id: string }) {
-    const element: HTMLElement | null = document.getElementById(id);
-    if (null === element) {
-      throw new Error(`Element "${id}" is not found`);
-    }
-    this._element = element as HTMLCanvasElement;
+    this.element = getElementByIdOrThrow(HTMLCanvasElement, id);
   }
 
   public getContext(): WebGL2RenderingContext {
-    const element: HTMLCanvasElement = this._element;
+    const element: HTMLCanvasElement = this.element;
     const gl: WebGL2RenderingContext | null = element.getContext("webgl2", {
       preserveDrawingBuffer: false,
     });
@@ -23,8 +21,8 @@ export class Canvas {
     return gl;
   }
 
-  public syncSize() {
-    const element: HTMLCanvasElement = this._element;
+  public syncSize(): void {
+    const element: HTMLCanvasElement = this.element;
     const rect: DOMRect = element.getBoundingClientRect();
     const width: number = rect.width;
     const height: number = rect.height;
@@ -33,7 +31,7 @@ export class Canvas {
   }
 
   public getSize(): { width: number; height: number } {
-    const element: HTMLCanvasElement = this._element;
+    const element: HTMLCanvasElement = this.element;
     return {
       width: element.width,
       height: element.height,
