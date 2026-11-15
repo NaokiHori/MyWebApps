@@ -25,6 +25,7 @@ export default defineConfig({
         Roulette: resolve(root, "pages/Roulette", "index.html"),
         SudokuAssistant: resolve(root, "pages/SudokuAssistant", "index.html"),
         Truss: resolve(root, "pages/Truss", "index.html"),
+        NSSolver: resolve(root, "pages/NSSolver", "index.html"),
       },
     },
   },

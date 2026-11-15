@@ -11,6 +11,7 @@ import hifuIcon from "./pages/HIFU/icon.jpg";
 import trussIcon from "./pages/Truss/icon.jpg";
 import cartPoleIcon from "./pages/CartPole/icon.jpg";
 import logoIcon from "./pages/Logo/icon.jpg";
+import nsSolverIcon from "./pages/NSSolver/icon.jpg";
 
 class Page {
   private element: HTMLDivElement;
@@ -151,6 +152,12 @@ const ALL_PAGES: Array<Page> = [
     title: "Logo",
     href: `${ROOT}/Logo/index.html`,
     imageSource: logoIcon,
+  }),
+  new Page({
+    isActive: false,
+    title: "NSSolver",
+    href: `${ROOT}/NSSolver/index.html`,
+    imageSource: nsSolverIcon,
   }),
 ];
 
